@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .text-popup {
+        animation: textPopup 1s;
+        color: red;
+        user-select: none;
+        white-space: nowrap;
+        position: absolute;
+        z-index: 99;
+        opacity: 0;
+    }
+    div:hover{
+         /* transition: all 1s;
+         transform: translateY(-50px);
+         opacity: 0; */
+    }
+@keyframes textPopup {
+        0%, 100% {
+            opacity: 0;
+        }
+        5% {
+            opacity: 1;
+        }
+        /* 100% {
+            transform: translateY(-50px);    
+        } */
+    }
+    </style>
+</head>
+<body>
+    <div class="text-popup">
+        66
+    </div>
+    <script>
+        let arr = ['富强', '民主', '文明', '和谐', '自由', '平等', '公正', '法治', '爱国', '敬业', '诚信', '友善']
+
+        fnTextPopup(arr)
+
+        function fnTextPopup(arr){
+           
+              var index = 0
+              document.addEventListener('click', (ev)=> {
+
+                var random = Math.ceil(Math.random() * 100 + 5)
+                
+                   let array = [
+                      `transform: translateY(-${random}px)`,
+                      `transform: translateY(${random}px)`,
+                      `transform: translateX(-${random}px)`,
+                      `transform: translateX(${random}px)`,
+                  ]
+
+                  var y = ev.pageY
+                  var x = ev.pageX
+                let div = document.createElement('div')  
+
+                  if (index > arr.length-1) {
+                      index = 0
+                    if(arr[index] && index !==0 ){
+                        index++
+                    }
+                  }
+                  
+                  div.innerText = arr[index]
+                  div.classList.add('text-popup')
+        
+                div.style.cssText = `left:${x}px;top:${y}px;transition: all 1s;
+                ${array[Math.floor(Math.random() * array.length)]};`
+
+                document.body.appendChild(div)
+
+                setTimeout(() => {
+                    div.style.display = 'none'
+                }, 1000);
+
+                index++
+
+              },false)
+        }
+
+    </script>
+</body>
+</html>
