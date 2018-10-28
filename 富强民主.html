@@ -7,7 +7,7 @@
     <title>Document</title>
     <style>
     .text-popup {
-        animation: textPopup 1s;
+        animation: textPopup 2s;
         color: red;
         user-select: none;
         white-space: nowrap;
@@ -35,7 +35,6 @@
 </head>
 <body>
     <div class="text-popup">
-        66
     </div>
     <script>
         let arr = ['富强', '民主', '文明', '和谐', '自由', '平等', '公正', '法治', '爱国', '敬业', '诚信', '友善']
@@ -47,7 +46,9 @@
               var index = 0
               document.addEventListener('click', (ev)=> {
 
-                var random = Math.ceil(Math.random() * 100 + 5)
+                var random = Math.random() * 100 + 20
+                
+                console.log(random);
                 
                    let array = [
                       `transform: translateY(-${random}px)`,
@@ -62,9 +63,6 @@
 
                   if (index > arr.length-1) {
                       index = 0
-                    if(arr[index] && index !==0 ){
-                        index++
-                    }
                   }
                   
                   div.innerText = arr[index]
@@ -74,10 +72,6 @@
                 ${array[Math.floor(Math.random() * array.length)]};`
 
                 document.body.appendChild(div)
-
-                setTimeout(() => {
-                    div.style.display = 'none'
-                }, 1000);
 
                 index++
 
